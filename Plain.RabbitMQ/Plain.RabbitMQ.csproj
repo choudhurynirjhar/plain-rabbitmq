@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.0.0.2</Version>
+    <Version>0.0.0.3</Version>
     <Authors>Nirjhar Choudhury</Authors>
     <Company>.Net Core Central</Company>
     <Product>RabbitMQ .Net Core Client</Product>
@@ -16,7 +16,8 @@ https://www.youtube.com/c/dotnetcorecentral</Description>
     <PackageLicenseExpression></PackageLicenseExpression>
     <RepositoryUrl>https://github.com/choudhurynirjhar/plain-rabbitmq</RepositoryUrl>
     <PackageReleaseNotes>10/03/2020: Initial version
-10/03/2010: Fix namespaces</PackageReleaseNotes>
+10/03/2020: Fix namespaces
+10/03/2020: Fix issue with auto ack</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
