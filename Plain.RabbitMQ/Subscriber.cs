@@ -55,7 +55,7 @@ namespace Plain.RabbitMQ
                 }
             };
 
-            _model.BasicConsume(_queue, true, consumer);
+            _model.BasicConsume(_queue, false, consumer);
         }
 
         public void Dispose()
