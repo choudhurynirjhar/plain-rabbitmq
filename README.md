@@ -35,8 +35,16 @@ publisher.Publish(JsonConvert.SerializeObject(object), "routing key", headers);
 Subscriber
 ```csharp
 subscriber.Subscribe((message, header) => {
-	Console.WriteLine(message);
+    Console.WriteLine(message);
     return true;
+});
+```
+
+Async Subscriber
+```csharp
+subscriber.SubscribeAsync(async (message, header) => {
+    Console.WriteLine(message);
+    return await Task.FromResult(true);
 });
 ```
 
