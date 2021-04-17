@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.0.0.3</Version>
+    <Version>0.0.0.4</Version>
     <Authors>Nirjhar Choudhury</Authors>
     <Company>.Net Core Central</Company>
     <Product>RabbitMQ .Net Core Client</Product>
@@ -22,6 +22,7 @@ https://www.youtube.com/c/dotnetcorecentral</Description>
 
   <ItemGroup>
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

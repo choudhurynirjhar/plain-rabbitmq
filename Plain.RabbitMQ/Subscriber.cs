@@ -3,6 +3,7 @@ using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Plain.RabbitMQ
 {
@@ -49,6 +50,23 @@ namespace Plain.RabbitMQ
                 var body = e.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 bool success = callback.Invoke(message, e.BasicProperties.Headers);
+                if (success)
+                {
+                    _model.BasicAck(e.DeliveryTag, true);
+                }
+            };
+
+            _model.BasicConsume(_queue, false, consumer);
+        }
+
+        public void SubscribeAsync(Func<string, IDictionary<string, object>, Task<bool>> callback)
+        {
+            var consumer = new AsyncEventingBasicConsumer(_model);
+            consumer.Received += async (sender, e) => 
+            {
+                var body = e.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+                bool success = await callback.Invoke(message, e.BasicProperties.Headers);
                 if (success)
                 {
                     _model.BasicAck(e.DeliveryTag, true);
