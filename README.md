@@ -7,7 +7,7 @@ Plain Rabbitmq is a plain and simple wrapper around RabbitMQ.Client encapsulatin
 Use the Nuget package manager [Nuget](https://www.nuget.org/packages/Plain.RabbitMQ/) to install Plain.RabbitMQ
 
 ```bash
-Install-Package Plain.RabbitMQ -Version 0.0.0.3
+Install-Package Plain.RabbitMQ -Version 0.0.0.4
 ```
 
 ## Usage
