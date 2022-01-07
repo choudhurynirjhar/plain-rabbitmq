@@ -76,6 +76,42 @@ namespace Plain.RabbitMQ
             _model.BasicConsume(_queue, false, consumer);
         }
 
+        public void Subscribe(Func<string, IDictionary<string, object>, string, bool> callback)
+        {
+            var consumer = new EventingBasicConsumer(_model);
+            consumer.Received += (sender, e) =>
+            {
+                var body = e.Body.ToArray();
+                var routingKey = e.RoutingKey;
+                var message = Encoding.UTF8.GetString(body);
+                bool success = callback.Invoke(message, e.BasicProperties.Headers, routingKey);
+                if (success)
+                {
+                    _model.BasicAck(e.DeliveryTag, true);
+                }
+            };
+
+            _model.BasicConsume(_queue, false, consumer);
+        }
+
+        public void SubscribeAsync(Func<string, IDictionary<string, object>, string, Task<bool>> callback)
+        {
+            var consumer = new AsyncEventingBasicConsumer(_model);
+            consumer.Received += async (sender, e) =>
+            {
+                var body = e.Body.ToArray();
+                var routingKey = e.RoutingKey;
+                var message = Encoding.UTF8.GetString(body);
+                bool success = await callback.Invoke(message, e.BasicProperties.Headers, routingKey);
+                if (success)
+                {
+                    _model.BasicAck(e.DeliveryTag, true);
+                }
+            };
+
+            _model.BasicConsume(_queue, false, consumer);
+        }
+
         public void Dispose()
         {
             Dispose(true);
