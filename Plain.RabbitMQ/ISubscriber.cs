@@ -8,5 +8,7 @@ namespace Plain.RabbitMQ
     {
         void Subscribe(Func<string, IDictionary<string, object>, bool> callback);
         void SubscribeAsync(Func<string, IDictionary<string, object>, Task<bool>> callback);
+        void SubscribeAsync(Func<string, IDictionary<string, object>, string, Task<bool>> callback);
+        void Subscribe(Func<string, IDictionary<string, object>, string, bool> callback);
     }
 }
